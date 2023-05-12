@@ -1,7 +1,7 @@
-import lambda_multiprocessing.pool
 import os
 
 import fastobo
+from lambda_multiprocessing import Pool
 
 from ..logic.lineage import Lineage
 from ..utils.meta import typechecked
@@ -39,7 +39,7 @@ class OboJSONParser(FastoboParser, BaseParser):
         # Extract frames from the current document.
         with typechecked.disabled():
             try:
-                with lambda_multiprocessing.pool.ThreadPool(threads) as pool:
+                with Pool(threads) as pool:
                     pool.map(self.extract_entity, doc)
             except SyntaxError as err:
                 location = self.ont.path, err.lineno, err.offset, err.text

@@ -1,4 +1,4 @@
-import lambda_multiprocessing.pool
+from lambda_multiprocessing import Pool
 import os
 
 import fastobo
@@ -38,7 +38,7 @@ class OboParser(FastoboParser, BaseParser):
         # Extract frames from the current document.
         with typechecked.disabled():
             try:
-                with lambda_multiprocessing.pool.ThreadPool(threads) as pool:
+                with Pool(threads) as pool:
                     pool.map(self.extract_entity, doc)
             except SyntaxError as s:
                 location = self.ont.path, s.lineno, s.offset, s.text

@@ -1,6 +1,6 @@
 import abc
 import functools
-import lambda_multiprocessing.pool
+from lambda_multiprocessing import Pool
 import operator
 import os
 import typing
@@ -66,7 +66,7 @@ class BaseParser(abc.ABC):
             basepath=basepath,
             timeout=timeout,
         )
-        with lambda_multiprocessing.pool.ThreadPool(threads) as pool:
+        with Pool(threads) as pool:
             return dict(pool.map(lambda i: (i, process(i)), imports))
 
     _entities = {
