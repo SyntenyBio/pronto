@@ -8,3 +8,4 @@ pygments-style-monokailight ~=0.4
 ipython ~=7.11
 pygments ~=2.4
 fastobo ~=0.11.1
+lambda-multiprocessing==0.3
